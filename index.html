@@ -1,0 +1,1885 @@
+)<script>
+  atOptions = {
+    'key' : 'a82f7c2275c886efd2489abeb66a5797',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/a82f7c2275c886efd2489abeb66a5797/invoke.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <meta name="description" content="MovieStream - Watch Movies Online">
+    <title>PRO X</title>
+    <!-- Font Awesome 6.5.1 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== RESET & VARIABLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        :root {
+            /* Dark theme (default) */
+            --bg-primary: #141414;
+            --bg-secondary: #1f1f1f;
+            --bg-card: #2a2a2a;
+            --accent: #e50914;
+            --accent-hover: #b2070a;
+            --text-primary: #e5e5e5;
+            --text-secondary: #999999;
+            --border: #404040;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #3b82f6;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            --overlay: rgba(0, 0, 0, 0.9);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f5f5f5;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --border: #dddddd;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --overlay: rgba(255, 255, 255, 0.95);
+        }
+
+        /* ===== GLOBAL STYLES ===== */
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding-bottom: 70px; /* Space for bottom nav */
+            transition: background-color 0.3s ease, color 0.2s ease;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== LOADING SCREEN ===== */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .loader i {
+            font-size: 48px;
+            color: var(--accent);
+            animation: spin 1s linear infinite;
+        }
+
+        .loader p {
+            margin-top: 16px;
+            color: var(--text-secondary);
+            font-size: 18px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-secondary);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 20px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 600px;
+            position: relative;
+        }
+
+        .search-container input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .search-container input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(229, 9, 20, 0.2);
+        }
+
+        .search-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .logo span {
+                display: none;
+            }
+            .search-container input {
+                padding: 10px 15px 10px 40px;
+                font-size: 14px;
+            }
+        }
+
+        /* ===== 3D CAROUSEL ===== */
+        .carousel-section {
+            margin: 20px 0 10px;
+            position: relative;
+            height: 320px;
+        }
+
+        @media (min-width: 768px) {
+            .carousel-section {
+                height: 380px;
+            }
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            perspective: 1200px;
+            overflow: hidden;
+            touch-action: pan-y pinch-zoom;
+        }
+
+        .carousel-track {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        .carousel-item {
+            position: absolute;
+            width: 220px;
+            height: 280px;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            background: var(--bg-card);
+        }
+
+        @media (min-width: 768px) {
+            .carousel-item {
+                width: 260px;
+                height: 330px;
+            }
+        }
+
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .carousel-item .movie-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px 10px 10px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .carousel-control {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--text-primary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            font-size: 20px;
+        }
+
+        .carousel-control:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-control {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+        }
+
+        /* ===== GENRE FILTER CHIPS ===== */
+        .genre-section {
+            margin: 5px 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .genre-chips {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 5px 0 15px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .genre-chips::-webkit-scrollbar {
+            display: none;
+        }
+
+        .genre-chip {
+            padding: 8px 20px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .genre-chip:hover,
+        .genre-chip.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* ===== MOVIES GRID ===== */
+        .movies-grid-section {
+            margin-top: 20px;
+        }
+
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        @media (min-width: 768px) {
+            .movies-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .movies-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .movie-card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid var(--border);
+            aspect-ratio: 2/3;
+            position: relative;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: var(--shadow);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .movie-card .movie-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px 10px 10px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            color: white;
+        }
+
+        .movie-card .movie-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .movie-card .movie-genre {
+            font-size: 12px;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+
+        .movie-card .movie-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--warning);
+        }
+
+        /* ===== MODAL STYLES ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--overlay);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: block;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            margin: 30px auto;
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: var(--accent);
+        }
+
+        /* Video Player Section */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            background: #000;
+        }
+
+        .video-placeholder,
+        .video-player {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .video-placeholder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: none;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .play-button:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .video-player iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close-video {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Modal Info Section */
+        .modal-info {
+            padding: 25px;
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .modal-meta {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--text-secondary);
+        }
+
+        .modal-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--warning);
+        }
+
+        .modal-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .modal-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            min-height: 48px;
+        }
+
+        .modal-btn.play {
+            background: var(--info);
+            color: white;
+            flex: 2;
+        }
+
+        .modal-btn.download {
+            background: var(--success);
+            color: white;
+            flex: 1;
+        }
+
+        .modal-btn.favorite {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .modal-btn.favorite.active {
+            background: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .modal-btn.report {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        /* Star Rating */
+        .star-rating {
+            display: flex;
+            gap: 8px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+        .star-rating i {
+            font-size: 30px;
+            color: var(--border);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .star-rating i:hover,
+        .star-rating i.active {
+            color: var(--warning);
+            transform: scale(1.1);
+        }
+
+        /* ===== BOTTOM NAVIGATION ===== */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--bg-secondary);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: color 0.2s ease;
+            padding: 8px 16px;
+            min-width: 64px;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+        }
+
+        .nav-item span {
+            font-size: 12px;
+        }
+
+        .nav-item.active {
+            color: var(--accent);
+        }
+
+        /* ===== SETTINGS MODAL ===== */
+        .settings-list {
+            padding: 20px;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .setting-item:hover {
+            background: var(--border);
+        }
+
+        .setting-item i {
+            font-size: 24px;
+            color: var(--accent);
+            width: 30px;
+        }
+
+        .setting-info {
+            flex: 1;
+        }
+
+        .setting-info h4 {
+            margin-bottom: 4px;
+        }
+
+        .setting-info p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Theme Switch */
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+            margin-left: auto;
+        }
+
+        .theme-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: var(--border);
+            transition: 0.4s;
+            border-radius: 30px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+
+        /* Auth Modal */
+        .auth-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 20px;
+        }
+
+        .auth-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .auth-tab.active {
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+        }
+
+        .auth-form {
+            display: none;
+            padding: 20px;
+        }
+
+        .auth-form.active {
+            display: block;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px;
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 16px;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            grid-column: 1 / -1;
+        }
+
+        .empty-state i {
+            font-size: 48px;
+            margin-bottom: 16px;
+            opacity: 0.5;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--success);
+            z-index: 3000;
+            animation: slideUp 0.3s ease;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        .toast.error {
+            border-left-color: var(--error);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translate(-50%, 100%);
+                opacity: 0;
+            }
+            to {
+                transform: translate(-50%, 0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loader">
+            <i class="fas fa-circle-notch"></i>
+            <p>Loading MovieStream...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>MovieStream</span>
+            </div>
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Search movies...">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- 3D Carousel -->
+        <section class="carousel-section">
+            <div class="carousel-container" id="carouselContainer">
+                <div class="carousel-track" id="carouselTrack"></div>
+                <div class="carousel-controls">
+                    <button class="carousel-control" id="prevSlide"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-control" id="nextSlide"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Genre Filter Chips -->
+        <section class="genre-section">
+            <div class="genre-chips" id="genreChips">
+                <button class="genre-chip active" data-genre="all">All</button>
+                <!-- Genres will be dynamically added -->
+            </div>
+        </section>
+
+        <!-- Movies Grid -->
+        <section class="movies-grid-section">
+            <div class="movies-grid" id="moviesGrid"></div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" data-view="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+        <div class="nav-item" data-view="search">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </div>
+        <div class="nav-item" data-view="favorites">
+            <i class="fas fa-heart"></i>
+            <span>Favorites</span>
+        </div>
+        <div class="nav-item" data-view="settings">
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+        </div>
+    </nav>
+
+    <!-- Movie Detail Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeMovieModal()"><i class="fas fa-times"></i></button>
+            
+            <div class="video-container" id="videoContainer">
+                <div class="video-placeholder" id="videoPlaceholder">
+                    <img id="modalPoster" src="" alt="Movie poster">
+                    <button class="play-button" id="playMovieBtn"><i class="fas fa-play"></i></button>
+                </div>
+                <div class="video-player" id="videoPlayer" style="display: none;"></div>
+            </div>
+
+            <div class="modal-info">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                
+                <div class="modal-meta">
+                    <span id="modalGenre"></span>
+                    <span class="modal-rating" id="modalRating">
+                        <i class="fas fa-star"></i>
+                        <span id="ratingValue">0.0</span>
+                        (<span id="ratingCount">0</span>)
+                    </span>
+                </div>
+
+                <p class="modal-description" id="modalDescription"></p>
+
+                <!-- Star Rating -->
+                <div class="star-rating" id="starRating">
+                    <i class="far fa-star" data-rating="1"></i>
+                    <i class="far fa-star" data-rating="2"></i>
+                    <i class="far fa-star" data-rating="3"></i>
+                    <i class="far fa-star" data-rating="4"></i>
+                    <i class="far fa-star" data-rating="5"></i>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="modal-btn play" id="modalPlayBtn">
+                        <i class="fas fa-play"></i> Play Now
+                    </button>
+                    <button class="modal-btn download" id="modalDownloadBtn">
+                        <i class="fas fa-download"></i> Download
+                    </button>
+                    <button class="modal-btn favorite" id="modalFavoriteBtn">
+                        <i class="fas fa-heart"></i> Favorite
+                    </button>
+                    <button class="modal-btn report" id="modalReportBtn">
+                        <i class="fas fa-flag"></i> Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeSettingsModal()"><i class="fas fa-times"></i></button>
+            <div class="modal-info">
+                <h2 class="modal-title">Settings</h2>
+                
+                <div class="settings-list">
+                    <!-- Theme Toggle -->
+                    <div class="setting-item" id="themeSetting">
+                        <i class="fas fa-moon"></i>
+                        <div class="setting-info">
+                            <h4>Dark Mode</h4>
+                            <p>Switch between light and dark theme</p>
+                        </div>
+                        <label class="theme-switch">
+                            <input type="checkbox" id="themeToggle">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Favorites -->
+                    <div class="setting-item" id="favoritesSetting">
+                        <i class="fas fa-heart"></i>
+                        <div class="setting-info">
+                            <h4>My Favorites</h4>
+                            <p><span id="favoritesCount">0</span> saved movies</p>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+
+                    <!-- Account -->
+                    <div class="setting-item" id="accountSetting">
+                        <i class="fas fa-user"></i>
+                        <div class="setting-info">
+                            <h4 id="accountStatus">Login / Sign Up</h4>
+                            <p id="accountEmail">Sign in to sync your data</p>
+                        </div>
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+
+                    <!-- App Version -->
+                    <div class="setting-item">
+                        <i class="fas fa-info-circle"></i>
+                        <div class="setting-info">
+                            <h4>App Version</h4>
+                            <p>1.0.0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <button class="modal-close" onclick="closeAuthModal()"><i class="fas fa-times"></i></button>
+            
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="auth-form active" id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button class="modal-btn play" style="width: 100%;" onclick="handleLogin()">Login</button>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="auth-form" id="signupForm">
+                <div class="form-group">
+                    <input type="text" id="signupName" placeholder="Full name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signupEmail" placeholder="Email address" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signupPassword" placeholder="Password (min. 6 characters)" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signupConfirmPassword" placeholder="Confirm password" required>
+                </div>
+                <button class="modal-btn play" style="width: 100%;" onclick="handleSignup()">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+    <script>
+        // ===== FIREBASE CONFIGURATION =====
+        // Replace with your Firebase project credentials
+        const firebaseConfig = {
+  apiKey: "AIzaSyCPuxl6OpIR4yHFz9OVq3GLV8sXs4BCLrg",
+  authDomain: "movie-3b46d.firebaseapp.com",
+  databaseURL: "https://movie-3b46d-default-rtdb.firebaseio.com",
+  projectId: "movie-3b46d",
+  storageBucket: "movie-3b46d.firebasestorage.app",
+  messagingSenderId: "216929785784",
+  appId: "1:216929785784:web:a65ea2e084f60b111a214d"
+};
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // ===== GLOBAL VARIABLES =====
+        let allMovies = [];
+        let filteredMovies = [];
+        let currentUser = null;
+        let currentMovie = null;
+        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        let theme = localStorage.getItem('theme') || 'dark';
+        let carouselInterval;
+        let currentCarouselIndex = 0;
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            initializeApp();
+            setupEventListeners();
+            applyTheme(theme);
+            updateThemeToggle();
+        });
+
+        function initializeApp() {
+            // Check authentication state
+            auth.onAuthStateChanged((user) => {
+                setTimeout(() => {
+                    document.getElementById('loading-screen').style.opacity = '0';
+                    setTimeout(() => {
+                        document.getElementById('loading-screen').style.display = 'none';
+                    }, 500);
+                }, 1000);
+
+                if (user) {
+                    currentUser = user;
+                    updateAccountInfo();
+                    loadUserFavorites();
+                } else {
+                    currentUser = null;
+                    updateAccountInfo();
+                }
+            });
+
+            // Load movies
+            loadMovies();
+        }
+
+        function setupEventListeners() {
+            // Search input
+            document.getElementById('searchInput').addEventListener('input', handleSearch);
+            
+            // Bottom navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.addEventListener('click', () => handleNavigation(item.dataset.view));
+            });
+
+            // Carousel controls
+            document.getElementById('prevSlide').addEventListener('click', () => rotateCarousel('prev'));
+            document.getElementById('nextSlide').addEventListener('click', () => rotateCarousel('next'));
+            
+            // Touch events for carousel
+            let touchStartX = 0;
+            document.getElementById('carouselContainer').addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+            });
+            
+            document.getElementById('carouselContainer').addEventListener('touchend', (e) => {
+                if (!touchStartX) return;
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        rotateCarousel('next');
+                    } else {
+                        rotateCarousel('prev');
+                    }
+                }
+            });
+
+            // Modal play button
+            document.getElementById('playMovieBtn').addEventListener('click', playCurrentMovie);
+            
+            // Theme toggle
+            document.getElementById('themeToggle').addEventListener('change', toggleTheme);
+
+            // Auth tabs
+            document.querySelectorAll('.auth-tab').forEach(tab => {
+                tab.addEventListener('click', () => switchAuthTab(tab.dataset.tab));
+            });
+
+            // Settings options
+            document.getElementById('favoritesSetting').addEventListener('click', () => {
+                closeSettingsModal();
+                showFavorites();
+            });
+
+            document.getElementById('accountSetting').addEventListener('click', () => {
+                closeSettingsModal();
+                if (currentUser) {
+                    handleLogout();
+                } else {
+                    openAuthModal();
+                }
+            });
+
+            // Star rating
+            document.querySelectorAll('.star-rating i').forEach(star => {
+                star.addEventListener('click', () => rateMovie(star.dataset.rating));
+                star.addEventListener('mouseenter', () => highlightStars(star.dataset.rating));
+                star.addEventListener('mouseleave', () => resetStars());
+            });
+        }
+
+        // ===== MOVIE FUNCTIONS =====
+        async function loadMovies() {
+            try {
+                const snapshot = await database.ref('movies').once('value');
+                const movies = snapshot.val();
+                
+                allMovies = movies ? Object.entries(movies).map(([id, data]) => ({
+                    id,
+                    ...data
+                })).sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)) : [];
+                
+                filteredMovies = [...allMovies];
+                displayMovies(filteredMovies);
+                updateCarousel();
+                updateGenreChips();
+            } catch (error) {
+                showToast('Error loading movies: ' + error.message, 'error');
+            }
+        }
+
+        function displayMovies(movies) {
+            const grid = document.getElementById('moviesGrid');
+            
+            if (!movies || movies.length === 0) {
+                grid.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-film"></i>
+                        <p>No movies found</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = movies.map(movie => createMovieCard(movie)).join('');
+        }
+
+        function createMovieCard(movie) {
+            const averageRating = movie.ratingCount > 0 
+                ? (movie.ratingTotal / movie.ratingCount).toFixed(1) 
+                : '0.0';
+
+            return `
+                <div class="movie-card" onclick="openMovieModal('${movie.id}')">
+                    <img src="${movie.poster || 'https://via.placeholder.com/300x450?text=No+Poster'}" 
+                         alt="${escapeHtml(movie.title)}"
+                         loading="lazy"
+                         onerror="this.src='https://via.placeholder.com/300x450?text=No+Poster'">
+                    <div class="movie-info">
+                        <div class="movie-title">${escapeHtml(movie.title)}</div>
+                        <div class="movie-genre">${escapeHtml(movie.genre)}</div>
+                        <div class="movie-rating">
+                            <i class="fas fa-star"></i>
+                            <span>${averageRating}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // ===== CAROUSEL FUNCTIONS =====
+        function updateCarousel() {
+            const latestMovies = allMovies.slice(0, 5);
+            const track = document.getElementById('carouselTrack');
+            
+            if (latestMovies.length === 0) {
+                track.innerHTML = '';
+                return;
+            }
+
+            track.innerHTML = latestMovies.map((movie, index) => `
+                <div class="carousel-item" data-index="${index}" onclick="openMovieModal('${movie.id}')">
+                    <img src="${movie.poster || 'https://via.placeholder.com/300x450'}" 
+                         alt="${escapeHtml(movie.title)}"
+                         onerror="this.src='https://via.placeholder.com/300x450'">
+                    <div class="movie-title-overlay">${escapeHtml(movie.title)}</div>
+                </div>
+            `).join('');
+
+            startCarouselRotation();
+            positionCarouselItems(0);
+        }
+
+        function startCarouselRotation() {
+            if (carouselInterval) clearInterval(carouselInterval);
+            carouselInterval = setInterval(() => {
+                rotateCarousel('next');
+            }, 4000);
+        }
+
+        function rotateCarousel(direction) {
+            const items = document.querySelectorAll('.carousel-item');
+            if (items.length === 0) return;
+
+            if (direction === 'next') {
+                currentCarouselIndex = (currentCarouselIndex + 1) % items.length;
+            } else {
+                currentCarouselIndex = (currentCarouselIndex - 1 + items.length) % items.length;
+            }
+
+            positionCarouselItems(currentCarouselIndex);
+        }
+
+        function positionCarouselItems(activeIndex) {
+            const items = document.querySelectorAll('.carousel-item');
+            const totalItems = items.length;
+            
+            items.forEach((item, index) => {
+                const offset = index - activeIndex;
+                let rotateY, translateZ, opacity, zIndex;
+
+                if (offset === 0) {
+                    // Center item
+                    rotateY = 0;
+                    translateZ = 150;
+                    opacity = 1;
+                    zIndex = 3;
+                } else if (offset === 1 || offset === -totalItems + 1) {
+                    // Right item
+                    rotateY = -45;
+                    translateZ = 50;
+                    opacity = 0.8;
+                    zIndex = 2;
+                } else if (offset === -1 || offset === totalItems - 1) {
+                    // Left item
+                    rotateY = 45;
+                    translateZ = 50;
+                    opacity = 0.8;
+                    zIndex = 2;
+                } else {
+                    // Hidden items
+                    rotateY = offset > 0 ? -90 : 90;
+                    translateZ = 0;
+                    opacity = 0;
+                    zIndex = 1;
+                }
+
+                item.style.transform = `rotateY(${rotateY}deg) translateZ(${translateZ}px)`;
+                item.style.opacity = opacity;
+                item.style.zIndex = zIndex;
+            });
+        }
+
+        // ===== GENRE FUNCTIONS =====
+        function updateGenreChips() {
+            const genres = ['All', ...new Set(allMovies.map(m => m.genre))];
+            const chipsContainer = document.getElementById('genreChips');
+            
+            chipsContainer.innerHTML = genres.map(genre => `
+                <button class="genre-chip ${genre === 'All' ? 'active' : ''}" 
+                        onclick="filterByGenre('${genre}')">
+                    ${genre}
+                </button>
+            `).join('');
+        }
+
+        function filterByGenre(genre) {
+            // Update active chip
+            document.querySelectorAll('.genre-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.textContent === genre);
+            });
+
+            // Filter movies
+            if (genre === 'All') {
+                filteredMovies = [...allMovies];
+            } else {
+                filteredMovies = allMovies.filter(m => m.genre === genre);
+            }
+
+            displayMovies(filteredMovies);
+        }
+
+        // ===== SEARCH FUNCTION =====
+        function handleSearch() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            if (!searchTerm) {
+                filteredMovies = [...allMovies];
+            } else {
+                filteredMovies = allMovies.filter(movie => 
+                    movie.title.toLowerCase().includes(searchTerm) ||
+                    movie.genre.toLowerCase().includes(searchTerm)
+                );
+            }
+
+            displayMovies(filteredMovies);
+            
+            // Update active genre chip
+            document.querySelectorAll('.genre-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.textContent === 'All');
+            });
+        }
+
+        // ===== MODAL FUNCTIONS =====
+        function openMovieModal(movieId) {
+            currentMovie = allMovies.find(m => m.id === movieId);
+            if (!currentMovie) return;
+
+            const modal = document.getElementById('movieModal');
+            
+            // Update modal content
+            document.getElementById('modalTitle').textContent = currentMovie.title;
+            document.getElementById('modalGenre').textContent = currentMovie.genre;
+            document.getElementById('modalDescription').textContent = currentMovie.description;
+            document.getElementById('modalPoster').src = currentMovie.poster || 'https://via.placeholder.com/300x450';
+            
+            // Update rating
+            const avgRating = currentMovie.ratingCount > 0 
+                ? (currentMovie.ratingTotal / currentMovie.ratingCount).toFixed(1) 
+                : '0.0';
+            document.getElementById('ratingValue').textContent = avgRating;
+            document.getElementById('ratingCount').textContent = currentMovie.ratingCount || 0;
+
+            // Update favorite button
+            const isFavorite = favorites.includes(movieId);
+            const favBtn = document.getElementById('modalFavoriteBtn');
+            favBtn.innerHTML = isFavorite ? 
+                '<i class="fas fa-heart"></i> Favorited' : 
+                '<i class="far fa-heart"></i> Favorite';
+            favBtn.classList.toggle('active', isFavorite);
+
+            // Hide video player, show placeholder
+            document.getElementById('videoPlaceholder').style.display = 'flex';
+            document.getElementById('videoPlayer').style.display = 'none';
+            document.getElementById('videoPlayer').innerHTML = '';
+
+            modal.classList.add('active');
+        }
+
+        function closeMovieModal() {
+            document.getElementById('movieModal').classList.remove('active');
+            // Stop video if playing
+            document.getElementById('videoPlayer').innerHTML = '';
+            document.getElementById('videoPlaceholder').style.display = 'flex';
+            document.getElementById('videoPlayer').style.display = 'none';
+        }
+
+        function playCurrentMovie() {
+            if (!currentMovie) return;
+            
+            const embedUrl = convertToEmbedUrl(currentMovie.playUrl);
+            if (!embedUrl) {
+                showToast('Unable to play this video', 'error');
+                return;
+            }
+
+            document.getElementById('videoPlaceholder').style.display = 'none';
+            document.getElementById('videoPlayer').style.display = 'block';
+            document.getElementById('videoPlayer').innerHTML = `
+                <iframe src="${embedUrl}" 
+                        allow="autoplay; fullscreen" 
+                        allowfullscreen>
+                </iframe>
+                <button class="close-video" onclick="closeVideo()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+        }
+
+        function closeVideo() {
+            document.getElementById('videoPlayer').innerHTML = '';
+            document.getElementById('videoPlayer').style.display = 'none';
+            document.getElementById('videoPlaceholder').style.display = 'flex';
+        }
+
+        function convertToEmbedUrl(url) {
+            if (!url) return null;
+            
+            // YouTube
+            const youtubeRegex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/i;
+            const youtubeMatch = url.match(youtubeRegex);
+            
+            if (youtubeMatch) {
+                return `https://www.youtube.com/embed/${youtubeMatch[1]}?autoplay=1`;
+            }
+            
+            // Vimeo
+            const vimeoRegex = /vimeo\.com\/(?:.*\/)?([0-9]+)/i;
+            const vimeoMatch = url.match(vimeoRegex);
+            
+            if (vimeoMatch) {
+                return `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`;
+            }
+            
+            // Dailymotion
+            const dailymotionRegex = /dailymotion\.com\/video\/([a-zA-Z0-9]+)/i;
+            const dailymotionMatch = url.match(dailymotionRegex);
+            
+            if (dailymotionMatch) {
+                return `https://www.dailymotion.com/embed/video/${dailymotionMatch[1]}?autoplay=1`;
+            }
+            
+            // Direct video file
+            if (url.match(/\.(mp4|webm|ogg)$/i)) {
+                return url;
+            }
+            
+            return url; // Return original if no pattern matches
+        }
+
+        // ===== FAVORITE FUNCTIONS =====
+        function toggleFavorite() {
+            if (!currentMovie) return;
+            
+            const movieId = currentMovie.id;
+            const index = favorites.indexOf(movieId);
+            
+            if (index === -1) {
+                favorites.push(movieId);
+                showToast('Added to favorites');
+            } else {
+                favorites.splice(index, 1);
+                showToast('Removed from favorites');
+            }
+            
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            
+            // Update button
+            const favBtn = document.getElementById('modalFavoriteBtn');
+            favBtn.innerHTML = index === -1 ? 
+                '<i class="fas fa-heart"></i> Favorited' : 
+                '<i class="far fa-heart"></i> Favorite';
+            favBtn.classList.toggle('active', index === -1);
+            
+            updateFavoritesCount();
+        }
+
+        function loadUserFavorites() {
+            if (currentUser) {
+                // Load from Firebase if user is logged in
+                database.ref(`users/${currentUser.uid}/favorites`).once('value')
+                    .then(snapshot => {
+                        const fbFavorites = snapshot.val();
+                        if (fbFavorites) {
+                            favorites = fbFavorites;
+                            localStorage.setItem('favorites', JSON.stringify(favorites));
+                        }
+                        updateFavoritesCount();
+                    });
+            } else {
+                favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                updateFavoritesCount();
+            }
+        }
+
+        function showFavorites() {
+            const favoriteMovies = allMovies.filter(m => favorites.includes(m.id));
+            
+            // Update active nav
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.view === 'favorites');
+            });
+            
+            // Display favorites
+            if (favoriteMovies.length === 0) {
+                document.getElementById('moviesGrid').innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-heart"></i>
+                        <p>No favorite movies yet</p>
+                    </div>
+                `;
+            } else {
+                displayMovies(favoriteMovies);
+            }
+        }
+
+        // ===== RATING FUNCTIONS =====
+        async function rateMovie(rating) {
+            if (!currentUser) {
+                showToast('Please login to rate movies', 'error');
+                openAuthModal();
+                return;
+            }
+
+            if (!currentMovie) return;
+
+            try {
+                const movieRef = database.ref(`movies/${currentMovie.id}`);
+                const snapshot = await movieRef.once('value');
+                const movie = snapshot.val();
+
+                const newRatingTotal = (movie.ratingTotal || 0) + parseInt(rating);
+                const newRatingCount = (movie.ratingCount || 0) + 1;
+
+                await movieRef.update({
+                    ratingTotal: newRatingTotal,
+                    ratingCount: newRatingCount
+                });
+
+                // Update local movie
+                currentMovie.ratingTotal = newRatingTotal;
+                currentMovie.ratingCount = newRatingCount;
+
+                // Update display
+                const avgRating = (newRatingTotal / newRatingCount).toFixed(1);
+                document.getElementById('ratingValue').textContent = avgRating;
+                document.getElementById('ratingCount').textContent = newRatingCount;
+
+                showToast('Thank you for rating!');
+            } catch (error) {
+                showToast('Error rating movie: ' + error.message, 'error');
+            }
+        }
+
+        function highlightStars(rating) {
+            document.querySelectorAll('.star-rating i').forEach((star, index) => {
+                if (index < rating) {
+                    star.className = 'fas fa-star';
+                } else {
+                    star.className = 'far fa-star';
+                }
+            });
+        }
+
+        function resetStars() {
+            document.querySelectorAll('.star-rating i').forEach(star => {
+                star.className = 'far fa-star';
+            });
+        }
+
+        // ===== REPORT FUNCTION =====
+        async function reportBrokenLink() {
+            if (!currentMovie) return;
+
+            try {
+                await database.ref('reports').push({
+                    movieId: currentMovie.id,
+                    movieTitle: currentMovie.title,
+                    userId: currentUser?.uid || 'anonymous',
+                    timestamp: Date.now()
+                });
+
+                showToast('Report submitted. Thank you!');
+            } catch (error) {
+                showToast('Error submitting report: ' + error.message, 'error');
+            }
+        }
+
+        // ===== AUTH FUNCTIONS =====
+        function openAuthModal() {
+            document.getElementById('authModal').classList.add('active');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.remove('active');
+            // Clear forms
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('signupName').value = '';
+            document.getElementById('signupEmail').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupConfirmPassword').value = '';
+        }
+
+        function switchAuthTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => {
+                t.classList.toggle('active', t.dataset.tab === tab);
+            });
+            
+            document.getElementById('loginForm').classList.toggle('active', tab === 'login');
+            document.getElementById('signupForm').classList.toggle('active', tab === 'signup');
+        }
+
+        async function handleLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                await auth.signInWithEmailAndPassword(email, password);
+                closeAuthModal();
+                showToast('Logged in successfully');
+            } catch (error) {
+                showToast('Login failed: ' + error.message, 'error');
+            }
+        }
+
+        async function handleSignup() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
+
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match', 'error');
+                return;
+            }
+
+            if (password.length < 6) {
+                showToast('Password must be at least 6 characters', 'error');
+                return;
+            }
+
+            try {
+                const result = await auth.createUserWithEmailAndPassword(email, password);
+                
+                // Save user data
+                await database.ref(`users/${result.user.uid}`).set({
+                    name,
+                    email,
+                    createdAt: Date.now()
+                });
+
+                closeAuthModal();
+                showToast('Account created successfully');
+            } catch (error) {
+                showToast('Signup failed: ' + error.message, 'error');
+            }
+        }
+
+        async function handleLogout() {
+            try {
+                await auth.signOut();
+                favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+                showToast('Logged out successfully');
+                updateAccountInfo();
+            } catch (error) {
+                showToast('Error logging out: ' + error.message, 'error');
+            }
+        }
+
+        function updateAccountInfo() {
+            const statusEl = document.getElementById('accountStatus');
+            const emailEl = document.getElementById('accountEmail');
+            
+            if (currentUser) {
+                statusEl.textContent = 'Logged In';
+                emailEl.textContent = currentUser.email;
+            } else {
+                statusEl.textContent = 'Login / Sign Up';
+                emailEl.textContent = 'Sign in to sync your data';
+            }
+        }
+
+        // ===== NAVIGATION =====
+        function handleNavigation(view) {
+            // Update active state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.view === view);
+            });
+
+            switch(view) {
+                case 'home':
+                    displayMovies(filteredMovies);
+                    break;
+                case 'search':
+                    document.getElementById('searchInput').focus();
+                    break;
+                case 'favorites':
+                    showFavorites();
+                    break;
+                case 'settings':
+                    openSettingsModal();
+                    break;
+            }
+        }
+
+        function openSettingsModal() {
+            document.getElementById('settingsModal').classList.add('active');
+        }
+
+        function closeSettingsModal() {
+            document.getElementById('settingsModal').classList.remove('active');
+        }
+
+        // ===== THEME FUNCTIONS =====
+        function toggleTheme() {
+            theme = theme === 'dark' ? 'light' : 'dark';
+            applyTheme(theme);
+            localStorage.setItem('theme', theme);
+            updateThemeToggle();
+        }
+
+        function applyTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        function updateThemeToggle() {
+            const toggle = document.getElementById('themeToggle');
+            if (toggle) {
+                toggle.checked = theme === 'light';
+            }
+        }
+
+        // ===== HELPER FUNCTIONS =====
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+                <span>${message}</span>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideUp 0.3s reverse';
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        function updateFavoritesCount() {
+            document.getElementById('favoritesCount').textContent = favorites.length;
+        }
+
+        function escapeHtml(unsafe) {
+            if (!unsafe) return '';
+            return unsafe
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Add event listeners for modal buttons
+        document.getElementById('modalPlayBtn').addEventListener('click', playCurrentMovie);
+        document.getElementById('modalDownloadBtn').addEventListener('click', () => {
+            if (currentMovie?.downloadUrl) {
+                window.open(currentMovie.downloadUrl, '_blank');
+            }
+        });
+        document.getElementById('modalFavoriteBtn').addEventListener('click', toggleFavorite);
+        document.getElementById('modalReportBtn').addEventListener('click', reportBrokenLink);
+
+        // Close modals when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html><script>
+  atOptions = {
+    'key' : 'a82f7c2275c886efd2489abeb66a5797',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/a82f7c2275c886efd2489abeb66a5797/invoke.js"></script>
+<script>
+  atOptions = {
+    'key' : 'a82f7c2275c886efd2489abeb66a5797',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highperformanceformat.com/a82f7c2275c886efd2489abeb66a5797/invoke.js"></script>
